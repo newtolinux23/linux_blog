@@ -1,0 +1,40 @@
+---
+title: "Doom Emacs"
+date: "2023-10-10"
+description: "first blogs on Doom Emacs"
+tags:
+- doom-emacs
+- workflow
+ShowReadingTime: "True"
+---
+
+
+[[/img/mautic.jpg]]
+
+
+* Introduction
+This is my first blog about Emacs, It has been quite a challenge for me like everything in Linux. Since I moved from Windows OS for good, I've experienced a lot of trouble on Linux. I started with Manjaro (a very bad choice to start experimenting) and it was a mess, it was 2016 and I hardly found documentation, tutorials or any help about Manjaro. The reason I choose Manjaro was about ego, looking information about Linux in YouTube in the first video I watched the guy was using Manjaro and said that Manjaro was for smart people and was bashing Ubuntu. After a month of trying I downgrade to Ubuntu because have more information available even that I didn't like Ubuntu since the beginning. I think the interface looks like an old computer at the time, theses days Ubuntu have getting better, but i still don't like it.
+
+My distro of choice is Fedora Silverblue and the reason why:
+- Installing programs is easier and intuitive than Ubuntu.
+- It's more stable and the packages are more bleeding edge than Debian.
+- Fedora Silverblue is an immutable system, and I thing is the future of Linux.
+- Working with podman containers in combination with distrobox let me learn about new technologies.
+- It works with my old computer very nice.
+
+In conclusion this is a blog about Emacs and not about my journey. I'm glad of taking my time to learn Emacs after a long time skipping to even look at it. DistroTube always mention Emacs and alacrity in almost all his videos but I think I was trying to learn about other topics on Linux. This is a type of program that you learn something new everyday, and it is a tool that really you are going to use in a daily basis. Emacs is everythig
+- file manager
+- terminal
+- file editor
+- web browser, news reader and even has radio
+- document viewer and picture viewer, latex, PDF, hugo, etc
+- email interface
+- and lot more...
+
+I'm inside Emacs almost all the time, it changed my relationship with my computer. My workflow is more fascinating, I enjoy being in my computer for hours learning new way to be "mouse free".
+
+I use Doom Emacs, my configuration is not yet something I can brag about, it is simple. I can say is vanilla Doom Emacs with some tweaks like the theme changed. I think that Emacs is something everyone should learn but not everyone is willing to put the time and effort, and can be very challenging, because it is. My only regret is not know about Emacs sooner!
+
+
+[[/img/logo.svg]]
+

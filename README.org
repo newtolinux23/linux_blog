@@ -1,0 +1,8 @@
+#+title: Hugo Static Website on Github
+#+DESCRIPTION: learning hugo and git
+#+DATE: <2024-01-22 Mon>
+#+AUTHOR: Rob Alicea
+#+TAGS: privacy opeon-source self-hosted git
+
+* Getting Started With Hugo
+I'm finally put time to learn about creating a static website with Hugo and Github. Luckily for us there's tons of tutorials form beginners to more advanced.

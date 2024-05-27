@@ -1,0 +1,78 @@
+#+title: Mautic install Proxmox
+#+DESCRIPTION: the best open-source marketing software
+#+DATE: <2023-10-13 Fri>
+#+AUTHOR: Rob Alicea
+#+TAGS: alpine-linux mautic
+
+
+#+BEGIN_CENTER
+[[/img/mautic.jpg]]
+#+END_CENTER
+
+* Proxmox
+Alpine container
+
+
+* Docker and Docker-Compose
+
+Run the following commands one at a time.
+
+#+begin_src
+$ apk add docker.io docker-compose
+$ rc-update add docker boot
+$ service docker start
+#+end_src
+
+** Docker-Compose Template
+Access your new Mautic http://localhost:8893
+
+#+begin_src c bash
+version: "3.9"
+
+services:
+  database:
+    image: mariadb:latest
+    container_name: mautic-db
+    environment:
+    MYSQL_ROOT_PASSWORD: =password=
+    ports:
+      - "3306:3306"
+    volumes:
+      - database:/var/lib/mysql:rw
+    restart: always
+    networks:
+      - mauticnet
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --sql-mode=""
+
+  mautic:
+    container_name: mautic
+    image: mautic/mautic:v4-apache
+    volumes:
+      - mautic_data:/var/www/html:rw
+    environment:
+      - MAUTIC_DB_HOST=database
+      - MAUTIC_DB_USER=root
+      - MAUTIC_DB_PASSWORD= =passsword=
+      - MAUTIC_DB_NAME=mautic4
+      - MAUTIC_DB_TABLE_PREFIX=mautic4
+    restart: always
+    depends_on:
+      - database
+    links:
+      - database
+    networks:
+      - mauticnet
+    ports:
+      - "8888:80"
+
+networks:
+  mauticnet:
+
+volumes:
+  database:
+  mautic_data:
+#+end_src
+
+#+BEGIN_CENTER
+[[/img/logo.svg]]
+#+END_CENTER

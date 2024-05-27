@@ -1,0 +1,64 @@
+baseURL = "https://new-linux-user.streamers.city/"
+title = "New Linux User"
+theme = "m10c"
+paginate = 8
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+   [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects/"
+    weight =  4
+  [[menu.main]]
+    identifier = "news"
+    name = "News"
+    url = "/news/"
+    weight = 3
+    [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 5
+    
+[params]
+  author = "Rob Alicea"
+  avatar = "img/logo.svg"
+  description = "Linux from a newcomer's standpoint"
+  menu_item_separator = " - "
+  favicon = "img/logo.svg"
+  [[params.social]]
+    icon = "github"
+    name = "Github"
+    url = "https://github.com/ralicea23"
+  #[[params.social]]
+  # icon = "twitter"
+  #  name = "Twitter"
+  #  url = "https://twitter.com/gohugoio"
+
+   # Default theme
+  [params.style]
+    darkestColor = "#353b43"
+    darkColor = "#242930"
+    lightColor = "#ffffff"
+    lightestColor = "#9ad5ff"
+    primaryColor = "#fff582"
+
+  # Green theme
+  #[params.style]
+  #  darkestColor = "#315659"
+  #  darkColor = "#253031"
+  #  lightColor = "#96a879"
+  #  lightestColor = "#fff"
+  #  primaryColor = "#dad865"
+  
+  

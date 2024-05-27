@@ -1,0 +1,74 @@
+#+title: Ditch Google Search
+#+DESCRIPTION: Search without being tracked.
+#+DATE: <2024-01-12 Fri>
+#+AUTHOR: Rob Alicea
+#+TAGS: privacy open-source self-hosted proxmox
+
+
+#+BEGIN_CENTER
+[[/img/searxng.png]]
+#+END_CENTER
+
+* SearXNG
+In today's modern world, internet searches have become an integral part of our daily routines. I dedicate a significant amount of time each day to my computer, where I engage in tasks such as gathering information for my blogs, conducting research, and enhancing my own knowledge. However, like many others, I share concerns regarding the privacy of our online searches, suspecting that major tech giants like ~Google~, ~Microsoft~, or ~Yahoo~ might be monitoring our activities.
+
+For a majority of individuals, this may not be a pressing issue, possibly due to lack of awareness or indifference. However, safeguarding my privacy is of paramount importance to me, which led me to make the transition from the Windows operating system to Linux. Within the realm of Linux, my preferred choice is ~Fedora Silverblue~, a system known for its additional layer of security through immutability.
+
+Ultimately, the responsibility for ensuring online privacy and security predominantly rests with us. The internet landscape exposes us to potential risks such as viruses, malicious attacks, and the theft of private information. Despite these challenges, it is worth noting that the internet has become a safer place than it once was. It is up to us to explore methods of protecting our personal information and overall well-being, and a good starting point is safeguarding our online searches.
+
+One notable solution in this regard is ~SearXNG~, an open-source internet metasearch engine that aggregates results from over 70 search services. Their motto, as stated on the ~SearXNG website~, is "Search without being tracked." Users have the option to create their own instance or utilize one of the many instances listed on searx.space. In my opinion, having control over one's personal information is invaluable, and this is precisely what ~SearXNG~ provides.
+
+The motivation behind this blog post is not due to a lack of online search alternatives, but rather the confusion surrounding them. I have made numerous attempts in the past to find a suitable solution, and I eventually found success with ~Whoogle~, another internet metasearch engine that offers simplicity in installation and use (at least in my experience). It is gratifying to share that I was able to make it work effectively.
+* Set Up
+For this project I used:
+- Proxmox
+- Ubuntu: 23.04 server
+- Docker
+- Docker-compose
+- Cloudflare Tunnels
+- Personal Domain
+
+**** Docker
+I like to use Docker for its simplicity and because is just work. on how to use ~Proxmox~ and containers and docker are out of the scope of this tutorial. To follow me I'm assume you have a working ~Proxmox~, an ~Ubuntu server installed, and docker and docker-compose install~, and a ~Cloudflare~ account with a setup domain.
+
+Currently, I adhere to the guidance provided on [[https://github.com/searxng/searxng-docker][GitHub]] in order to obtain searxng-docker.
+#+BEGIN_SRC C
+cd /usr/local
+git clone https://github.com/searxng/searxng-docker.git
+cd searxng-docker
+#+end_src
+
+**** .env file
+After making adjustments to the ~.env file~, I encountered several challenges. The instructional resources I referred to consistently emphasized the inclusion of a personal domain and email, which proved ineffective in my case. Consequently, I decided to substitute the domain with the IP address of the server. To find the .env file type in the terminal ~ll~. To proceed, I uncommented the 'host' (replace Host with the IP address of your server or a domain if have one) and 'email' settings to get a valid certificate.
+#+begin_src c
+# By default listen on https://localhost
+# To change this:
+# * uncomment SEARXNG_HOSTNAME, and replace <host> by the SearXNG hostname
+# * uncomment LETSENCRYPT_EMAIL, and replace <email> by your email (require to create a Let's Encrypt certificate)
+
+ SEARXNG_HOSTNAME=<host>
+ LETSENCRYPT_EMAIL=<email>
+#+end_src
+**** Secret_Key
+Generate the secret key ~sed -i "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml~
+#+begin_src c
+# see https://docs.searxng.org/admin/settings/settings.html#settings-use-default-settings
+use_default_settings: true
+server:
+  # base_url is defined in the SEARXNG_BASE_URL environment variable, see .env and docker-compose.yml
+  secret_key: "ultrasecretkey"  # change this!
+  limiter: true  # can be disabled for a private instance
+  image_proxy: true
+ui:
+  static_use_hash: true
+redis:
+  url: redis://redis:6379/0
+  #+end_src
+The above command add the secret_key.
+**** Install
+Run ~SearXNG~ in the background: ~docker compose up -d~
+At this point your ~SearXNG~ engine can be access at http://<SERVER IP ADDRESS>:8888. The regular port number is 8080, I changed it on the ~docker-compose.yml~ file.
+**** Cloudflare
+With the use of ~Cloudflare Tunnels~, we will have the capability to access our instance from any location. This process is relatively straightforward, and I intend to write a blog post detailing the steps to create a ~Cloudflare Tunnel~.
+* Conclusion
+I believe the issue I encountered stemmed from my lack of knowledge regarding the need to replace the hostname with the IP address of the server. It was an oversight on my part, which unfortunately caused me to be unable to access ~SearXNG~ for some time now.

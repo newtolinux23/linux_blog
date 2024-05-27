@@ -1,0 +1,98 @@
+#+title: Terminal AI
+#+DESCRIPTION: shellgpt from terminal with API_KEY
+#+DATE: <2024-01-14 Sun>
+#+AUTHOR: Rob Alicea
+#+TAGS: artificial-intelligence ubuntu command-line
+
+
+#+BEGIN_CENTER
+[[/img/chat_gpt.jpg]]
+#+END_CENTER
+
+* ShellGPT
+=Shell-GPT= brings the magic of =Chat-GPT= into your terminal, offering a delightful boost to your productivity. It's quite remarkable to bypass the usual =Google= searches and other search engines by having this capability embedded directly in your terminal. For this initiative, I'm utilizing =Proxmox= with an Ubuntu 23.04 container, and the installation process is a breeze!
+
+I explored numerous tutorials and faced challenges with those that involved setting up =Shell-GPT= in a virtual environment, especially when trying to get it up and running again after a system reboot.
+
+** Step 1: Install Python and PIP on Your Computer
+ShellGPT, like many AI-driven applications, relies on Python. While Python often comes pre-installed on Linux systems, it's a good idea to verify its presence. To do this, simply check the installed version of Python.
+
+To check your Python version, open a Terminal and type:
+
+#+begin_src c bash
+python3 --version
+#+end_src
+
+If you see a version number, Python is installed and you're ready to proceed. If not, you'll need to install Python on your Ubuntu system before you can continue with the setup. Once Python is up and running, the next step is to install PIP, which is Python's own package manager and is essential for managing Python packages.
+
+Even though PIP typically comes with Python, it's wise to confirm its installation. To check if PIP is installed, run:
+
+#+begin_src c bash
+pip --version
+#+end_src
+
+
+#+begin_src c bash
+sudo apt install python3-pip
+#+end_src
+If you're encountering an error when trying to install PIP with the command provided, there is a steps you can take to troubleshoot and resolve the issue:
+#+begin_src c bash
+error: externally-managed-environment
+
+× This environment is externally managed
+╰─> To install Python packages system-wide, try apt install python3-xyz, where xyz is the package you are trying to install.
+
+    If you wish to install a non-Debian-packaged Python package, create a virtual environment using python3 -m venv path/to/venv. Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
+    sure you have python3-full installed.
+
+    If you wish to install a non-Debian packaged Python application, it may be easiest to use pipx install xyz, which will manage a virtual environment for you. Make sure you have pipx installed.
+
+    See /usr/share/doc/python3.11/README.venv for more information.
+
+note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+
+hint: See PEP 668 for the detailed specification.
+#+end_src
+To pass this error I used this:
+#+begin_src c bash
+sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
+#+end_src
+try to install pip again...
+
+** Step 2: Install Shell-GPT
+#+BEGIN_SRC C bash
+pip install shell-gpt --user
+#+END_SRC
+
+** Step 3: Getting API_Key
+#+BEGIN_CENTER
+[[/img/openai.png]]
+#+END_CENTER
+Go to [[https://openai.com/][openai]] website and create a an API_KEY.
+** Step 4: Adding the API_Key
+#+begin_src c bash
+cd .local/bin
+python3 sgpt
+# add the API_KEY after the prompt
+#+end_src
+** Step 5: Change PATH
+#+begin_src c bash
+sudo nano ~/.bashrc
+# add a line at the end of the file
+export PATH=$PATH:~/.local/bin:/usr/bin/python3
+
+source ~/.bashrc
+#+end_src
+* Conclusion
+At this point =ShellGPT= is ready to be use. Just simply type: sgpt --help to learn about how to use it. An example prompt could be:
+#+begin_example c
+sgpt --chat search "search information about the largest moon of Jupiter"
+
+The largest moon of Jupiter is Ganymede. It is not only the largest moon of Jupiter but also the largest moon in our solar system. Ganymede is even bigger than the planet Mercury. It was discovered by Galileo Galilei in 1610, along with three other large Jovian moons: Io, Europa, and Callisto, collectively known as the Galilean moons.
+
+Ganymede is unique because it has its own magnetic field, which is something very rare for a moon. It has a diameter of about 5,268 kilometers (3,273 miles) and is primarily composed of water ice and silicate rock. Ganymede orbits Jupiter every seven days and is one of the few moons in the solar system known to have a significant atmosphere, which includes oxygen, although it's too thin to support human life.
+
+NASA's Juno spacecraft, which is currently orbiting Jupiter, has provided some of the most detailed images of Ganymede. Additionally, the European Space Agency (ESA) is planning a mission called JUpiter ICy moons Explorer (JUICE), set to launch in 2023, which will study Ganymede in more detail, along with Europa and Callisto.
+#+end_example
+
+*Have fun!*

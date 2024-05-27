@@ -1,0 +1,63 @@
+---
+title: "Linux commands for dummies"
+author: "Rob Alicea"
+date: "2024-05-23"
+description: "esential commands for linux terminal"
+tags:
+- terminal
+- linux
+- workflow
+ShowReadingTime: "True"
+---
+
+[[/img/linux-commands.jpg]]
+
+* Introduction
+
+Linux is a versatile operating system embraced by users ranging from new learners to seasoned professionals. For beginners, mastering the command line interface (CLI) is a pivotal step towards harnessing the full potential of Linux. This article introduces the most fundamental and crucial Linux commands that every novice should learn. Navigating the File System ** +pwd+ (Print Working Directory). Displays the current directory path.
+** +ls+ (List)
+- Lists files and directories. Use +ls -l+ for a detailed view and +ls -a+ to show hidden files.
+** +cd+ (Change Directory)
+- Changes the current directory. +cd ..+ moves up one level, while +cd+ alone takes you to the home directory.
+**  +touch+
+- Creates a new file or updates the timestamp of an existing file.
+** +mkdir+ (Make Directory)
+- Creates a new directory.
+** +rm+ (Remove)
+- Deletes files or directories. Use +rm -r+ for recursive deletion.
+** +cp+ (Copy)
+- Copies files or directories. Use +cp -r+ for directories.
+** +mv+ (Move)
+- Moves or renames files or directories.
+- Viewing and Editing Files
+** +cat+ (Concatenate)
+- Displays file contents or merges files.
+** +less+
+- Allows for paginated viewing of file contents.
+** +nano+, +vi+, +emacs+
+- CLI text editors for modifying files.
+- Managing Processes
+** +ps+ (Process Status)
+- Lists running processes
+- Shows real-time system information and processes.
+** +kill+
+- Terminates processes by PID.
+- System Information
+** +df+ (Disk Free)
+- Reports free disk space.
+** +free+
+- Shows memory usage
+** +uname+ (Unix Name)
+- Provides system information. Use +uname -a+ for comprehensive details.
+- File Permissions
+** +chmod+ (Change Mode)
+- Modifies file or directory permissions.
+** +chown+ (Change Owner)
+- Changes file or directory ownership.
+** +ifconfig+
+- Configures network interfaces.
+
+* Conclusion
+The commands listed above are the building blocks for interacting with the Linux CLI. As beginners practice these commands, they will discover the CLI's efficiency and adaptability for various tasks.
+
+[[/img/logo.svg]]
