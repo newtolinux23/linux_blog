@@ -1,5 +1,5 @@
-baseURL = "https://new-linux-user.streamers.city/"
-title = "New Linux User"
+baseURL = "https://newtolinux.innovateiqtech.net"
+title = "New To Linux"
 theme = "m10c"
 paginate = 8
 
@@ -33,13 +33,13 @@ paginate = 8
 [params]
   author = "Rob Alicea"
   avatar = "img/logo.svg"
-  description = "Linux from a newcomer's standpoint"
+  description = "How linux can change your life"
   menu_item_separator = " - "
   favicon = "img/logo.svg"
   [[params.social]]
     icon = "github"
     name = "Github"
-    url = "https://github.com/ralicea23"
+    url = "https://github.com/newtolinux23"
   #[[params.social]]
   # icon = "twitter"
   #  name = "Twitter"
